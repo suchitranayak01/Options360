@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Options360</title>
+    <link rel="stylesheet" href="style.css" />
+    <!-- Poppins + Inter fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <header class="app-header">
+      <div class="app-title">
+        <div class="brand">
+          <img class="brand-img" src="logo.png" alt="Options360 logo (save attachment as logo.png)" />
+          <h1 class="logo" aria-label="Options360">
+            <span>O</span><span>p</span><span>t</span><span>i</span><span>o</span><span>n</span><span>s</span><span>3</span><span>6</span><span>0</span>
+          </h1>
+        </div>
+        <p class="subtitle">ATM Call + ATM Put (demo data)</p>
+      </div>
+      <div class="header-actions">
+        <div class="live-badge" id="liveBadge" title="Live status">
+          <span class="dot" id="liveDot"></span>
+          <span class="live-text" id="liveText">Offline</span>
+        </div>
+        <a class="btn ghost" href="login.html">Login</a>
+      </div>
+    </header>
+
+    <main class="app-grid">
+      <aside class="sidebar card">
+        <h4>Controls</h4>
+        <div class="controls">
+          <label>
+            <span>Market:</span>
+            <select id="marketType">
+              <option value="equity">Equity</option>
+              <option value="mcx">MCX</option>
+            </select>
+          </label>
+
+          <label>
+            <span>Index:</span>
+            <select id="indexSelect">
+              <option value="nifty">Nifty</option>
+              <option value="sensex">Sensex</option>
+            </select>
+          </label>
+
+          <label>
+            <span>Expiry Date:</span>
+            <select id="expiryDate">
+              <option value="2025-01-02">2025-01-02</option>
+              <option value="2025-01-16">2025-01-16</option>
+              <option value="2026-01-08">2026-01-08</option>
+              <option value="2026-01-15">2026-01-15</option>
+            </select>
+          </label>
+
+          <label>
+            <span>Metric:</span>
+            <select id="metricSelect">
+              <option value="iv">IV</option>
+              <option value="pcr">PCR</option>
+            </select>
+          </label>
+
+          <label>
+            <span>API Key:</span>
+            <input id="apiKey" placeholder="Alpha Vantage API key" />
+          </label>
+
+          <label>
+            <span>Symbol:</span>
+            <input id="symbol" placeholder="symbol" />
+          </label>
+
+          <label>
+            <input type="checkbox" id="useLive" /> Live
+          </label>
+
+          <label>
+            <span>Auto-refresh (s):</span>
+            <input id="liveInterval" type="number" min="5" max="600" value="30" />
+          </label>
+
+          <div class="form-actions">
+            <button id="refreshBtn">Refresh</button>
+          </div>
+        </div>
+      </aside>
+
+      <section class="content">
+        <div class="card metrics-row">
+          <div class="metric">
+            <div class="metric-value" id="metric-iv">IV: --</div>
+            <div class="metric-label">Straddle IV</div>
+          </div>
+          <div class="metric">
+            <div class="metric-value" id="metric-pcr">PCR: --</div>
+            <div class="metric-label">PCR</div>
+          </div>
+          <div class="metric">
+            <div class="metric-value" id="metric-price">Price: --</div>
+            <div class="metric-label">Last Price</div>
+          </div>
+        </div>
+        <div class="card metrics-row">
+          <div class="metric">
+            <div class="metric-value" id="metric-call">Call: --</div>
+            <div class="metric-label">Live Call Premium</div>
+          </div>
+          <div class="metric">
+            <div class="metric-value" id="metric-put">Put: --</div>
+            <div class="metric-label">Live Put Premium</div>
+          </div>
+          <div class="metric">
+            <div class="metric-value" id="metric-straddle">Straddle: --</div>
+            <div class="metric-label">Straddle Price</div>
+          </div>
+          <div class="metric">
+            <div class="metric-value" id="metric-updated">Updated: --</div>
+            <div class="metric-label">Last Updated</div>
+          </div>
+        </div>
+
+        <div class="card chart-card">
+          <div id="status" class="status"></div>
+          <canvas id="straddleChart" aria-label="Straddle chart" role="img"></canvas>
+        </div>
+
+        <div class="card account-card">
+          <h4>Account Options</h4>
+          <p>Open or manage your trading account to access live order placement and premium features.</p>
+          <div class="account-actions">
+            <a class="btn" href="login.html">Open Account</a>
+            <a class="btn ghost" href="#">Learn More</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <small>Demo only. Not trading advice.</small>
+      <br />
+      <small>Developer: TheOptionTrader</small>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>
+
